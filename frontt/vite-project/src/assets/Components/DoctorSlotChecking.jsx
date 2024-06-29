@@ -24,14 +24,23 @@ const App = () => {
         container: {
             padding: '30px',
             fontFamily: 'Arial, sans-serif',
-            backgroundColor: '#f0f0f0',
-            maxWidth: '800px',
-            margin: '0 auto',
-            borderRadius: '10px',
-            boxShadow: '0 0 10px rgba(0,0,0,0.1)',
-            backgroundImage: `url('/path/to/your/background-image.jpg')`,
+            backgroundColor: 'transparent', // Make the background transparent so the image can be seen
+            backgroundImage: `url('https://t4.ftcdn.net/jpg/05/79/48/43/360_F_579484323_waaeF98BnKROG1Ez3iMVbkavZrPToMut.jpg')`,
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            minHeight: '100vh', // Ensure the container covers the entire viewport height
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+        },
+        content: {
+            maxWidth: '800px',
+            width: '100%',
+            padding: '30px',
+            backgroundColor: 'rgba(255, 255, 255, 0.3)',
+            borderRadius: '10px',
+            boxShadow: '0 0 10px rgba(0,0,0,0.1)',
         },
         table: {
             width: '100%',
@@ -61,33 +70,35 @@ const App = () => {
 
     return (
         <div style={styles.container}>
-            <h2 style={styles.h2}>All Appointments</h2>
-            <table style={styles.table} id="list">
-                <thead>
-                    <tr>
-                        <th style={styles.th}>Doctor</th>
-                        <th style={styles.th}>Date</th>
-                        <th style={styles.th}>Time</th>
-                        <th style={styles.th}>Health Issue</th>
-                        <th style={styles.th}>Patient Name</th>
-                        <th style={styles.th}>Mobile Number</th>
-                        <th style={styles.th}>Aadhaar Number</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {slots.map((slot, index) => (
-                        <tr key={index}>
-                            <td style={styles.td}>{slot.doctor}</td>
-                            <td style={styles.td}>{slot.date}</td>
-                            <td style={styles.td}>{slot.time}</td>
-                            <td style={styles.td}>{slot.healthIssue}</td>
-                            <td style={styles.td}>{slot.patientName}</td>
-                            <td style={styles.td}>{slot.mobileNumber}</td>
-                            <td style={styles.td}>{slot.aadhaarNumber}</td>
+            <div style={styles.content}>
+                <h2 style={styles.h2}>All Appointments</h2>
+                <table style={styles.table} id="list">
+                    <thead>
+                        <tr>
+                            <th style={styles.th}>Doctor</th>
+                            <th style={styles.th}>Date</th>
+                            <th style={styles.th}>Time</th>
+                            <th style={styles.th}>Health Issue</th>
+                            <th style={styles.th}>Patient Name</th>
+                            <th style={styles.th}>Mobile Number</th>
+                            <th style={styles.th}>Aadhaar Number</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {slots.map((slot, index) => (
+                            <tr key={index}>
+                                <td style={styles.td}>{slot.doctor}</td>
+                                <td style={styles.td}>{slot.date}</td>
+                                <td style={styles.td}>{slot.time}</td>
+                                <td style={styles.td}>{slot.healthIssue}</td>
+                                <td style={styles.td}>{slot.patientName}</td>
+                                <td style={styles.td}>{slot.mobileNumber}</td>
+                                <td style={styles.td}>{slot.aadhaarNumber}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };

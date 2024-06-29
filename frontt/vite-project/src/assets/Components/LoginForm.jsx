@@ -53,7 +53,7 @@ function LoginForm() {
       padding: '40px',
       border: '1px solid #ccc',
       borderRadius: '10px',
-      backgroundColor: 'rgba(255, 255, 255, 0.5)', // Transparent background color
+      backgroundColor: 'rgba(255, 255, 255, 0.3)', // Transparent background color
     },
     formGroup: {
       marginBottom: '15px',

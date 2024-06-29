@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const doctors = [
     'Dr. John Doe',
@@ -23,6 +23,24 @@ const AppointmentForm = () => {
     const [patientName, setPatientName] = useState('');
     const [mobileNumber, setMobileNumber] = useState('');
     const [aadhaarNumber, setAadhaarNumber] = useState('');
+
+    useEffect(() => {
+        document.body.style.backgroundImage = "url('https://t4.ftcdn.net/jpg/05/79/48/43/360_F_579484323_waaeF98BnKROG1Ez3iMVbkavZrPToMut.jpg')";
+        document.body.style.backgroundSize = 'cover';
+        document.body.style.backgroundRepeat = 'no-repeat';
+        document.body.style.backgroundPosition = 'center';
+        document.body.style.height = '100vh';
+        document.body.style.margin = '0';
+
+        return () => {
+            document.body.style.backgroundImage = '';
+            document.body.style.backgroundSize = '';
+            document.body.style.backgroundRepeat = '';
+            document.body.style.backgroundPosition = '';
+            document.body.style.height = '';
+            document.body.style.margin = '';
+        };
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -51,6 +69,28 @@ const AppointmentForm = () => {
         }
     };
 
+    const getCurrentDateTime = () => {
+        const now = new Date();
+        const year = now.getFullYear();
+        let month = now.getMonth() + 1;
+        let day = now.getDate();
+        let hours = now.getHours();
+        let minutes = now.getMinutes();
+
+        // Ensure two-digit format
+        month = month < 10 ? `0${month}` : month;
+        day = day < 10 ? `0${day}` : day;
+        hours = hours < 10 ? `0${hours}` : hours;
+        minutes = minutes < 10 ? `0${minutes}` : minutes;
+
+        const currentDate = `${year}-${month}-${day}`;
+        const currentTime = `${hours}:${minutes}`;
+
+        return { currentDate, currentTime };
+    };
+
+    const { currentDate, currentTime } = getCurrentDateTime();
+
     return (
         <div style={{
             maxWidth: '500px',
@@ -58,10 +98,7 @@ const AppointmentForm = () => {
             padding: '30px',
             border: '2px solid #4CAF50',
             borderRadius: '15px',
-            backgroundColor: '#f9f9f9',
-            backgroundImage: `url('/path/to/your/background-image.jpg')`,
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
+            backgroundColor: 'rgba(255, 255, 255, 0.3)',
         }}>
             <h2 style={{ textAlign: 'center', marginBottom: '30px', color: '#4CAF50' }}>Book Your Appointment</h2>
             <form onSubmit={handleSubmit}>
@@ -85,6 +122,7 @@ const AppointmentForm = () => {
                         type="date"
                         value={date}
                         onChange={(e) => setDate(e.target.value)}
+                        min={currentDate}
                         required
                         style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '2px solid #4CAF50', fontSize: '16px' }}
                     />
@@ -95,6 +133,7 @@ const AppointmentForm = () => {
                         type="time"
                         value={time}
                         onChange={(e) => setTime(e.target.value)}
+                        min={currentTime}
                         required
                         style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '2px solid #4CAF50', fontSize: '16px' }}
                     />

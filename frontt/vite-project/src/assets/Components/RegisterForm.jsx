@@ -46,8 +46,8 @@ function RegisterForm() {
             width: '100%',
             padding: '40px',
             border: '1px solid #ccc',
-            borderRadius: '10px',
-            backgroundColor: 'rgba(255, 255, 255, 0.5)', // Transparent background color
+            borderRadius: '10px', 
+             backgroundColor: 'rgba(255, 255, 255, 0.3)', // Transparent background color
             boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
         },
         formGroup: {
